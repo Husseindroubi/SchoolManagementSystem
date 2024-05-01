@@ -1,0 +1,72 @@
+﻿
+@model List<Announcement>
+
+
+<br />
+<br />
+<br />
+<br />
+<br />
+<h1 class="text-dark">Announcement List</h1>
+@if (TempData["SuccessMessage"] != null)
+{
+    <div id="alertMessage" class="alert alert-success alert-dismissible fade show" role="alert">
+        @TempData["SuccessMessage"]
+        <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+    </div>
+}
+
+@if(User.IsInRole("Admin"))
+{
+    <a asp-controller="Announcement" asp-action="Create" class="btn btn-success mx-2">
+        <i class="bi bi-plus-circle-dotted"></i> Add Announcement
+    </a>
+}
+
+<a asp-area="Student" asp-controller="Dashboard" asp-action="DashPage" class="btn btn-info mx-2">
+    <i class="bi bi-arrow-return-left"></i> to Dashboard
+</a>
+
+<br />
+<br />
+
+<table class="table table-hover">
+    <thead>
+        <tr>
+            <th scope="col">Title</th>
+            <th scope="col">Content</th>
+            <th scope="col">Date Posted</th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var announcement in Model.OrderByDescending(u => u.DatePosted))
+        {
+            <tr class="table-secondary">
+                <td>@announcement.Title</td>
+                <td>@announcement.Content</td>
+                <td>@announcement.DatePosted</td>
+
+                @if (User.IsInRole("Admin"))
+                {
+                    <td>
+                        <div class="w-75 btn-group" role="group">
+                            <a asp-controller="Announcement" asp-action="Edit" asp-route-AnnouncementId="@announcement.AnnouncementId" class="btn btn-info mx-2">
+                                <i class="bi bi-pencil-square"> Edit</i>
+                            </a>
+                            <a asp-controller="Announcement" asp-action="Delete" asp-route-AnnouncementId="@announcement.AnnouncementId" class="btn btn-primary mx-2">
+                                <i class="bi bi-trash3-fill"> Delete</i>
+                            </a>
+                        </div>
+                    </td>
+                }
+
+            </tr>
+        }
+    </tbody>
+</table>
+
+<script>
+    setTimeout(function () {
+        $('#alertMessage').alert('close');
+    }, 2500); 
+</script>

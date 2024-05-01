@@ -1,0 +1,125 @@
+﻿@using Microsoft.AspNetCore.Identity
+
+@inject SignInManager<IdentityUser> SignInManager
+@inject UserManager<IdentityUser> UserManager
+
+@if (User?.Identity?.IsAuthenticated == true)
+{
+    <br />
+    <br />
+    <br />
+    <br />
+    <br />
+    <br />
+    <div class="container-fluid">
+        <div class="row">
+            <div class="col-md-3">
+                <div class="card mb-3">
+                    <div class="card-header">Dashboard Menu</div>
+                    <ul class="card-body">
+                        @if (User.IsInRole("Admin") || User.IsInRole("Teacher"))
+                        {
+                            <li class="list-group-item text-center mb-3">
+                                <a type="button" class="btn btn-outline-light btn-block w-100" asp-area="Admin" asp-controller="Subject" asp-action="Index">
+                                    <i class="bi bi-book"></i> Subjects
+                                </a>
+                            </li>
+                            <li class="list-group-item text-center mb-3">
+                                <a type="button" class="btn btn-outline-light btn-block w-100" asp-area="Admin" asp-controller="Classroom" asp-action="Index">
+                                    <i class="bi bi-door-closed"></i> Classrooms
+                                </a>
+                            </li>
+                        }
+
+                        <li class="list-group-item text-center mb-3">
+                            <a type="button" class="btn btn-outline-light btn-block w-100" asp-area="Admin" asp-controller="Announcement" asp-action="Index">
+                                <i class="bi bi-megaphone"></i> Announcements
+                            </a>
+                        </li>
+                        <li class="list-group-item text-center mb-3">
+                            <a type="button" class="btn btn-outline-light btn-block w-100" asp-area="Teacher" asp-controller="OnlineCourse" asp-action="Index">
+                                <i class="bi bi-laptop"></i> Online Courses
+                            </a>
+                        </li>
+                        <li class="list-group-item text-center mb-3">
+                            <a type="button" class="btn btn-outline-light btn-block w-100" asp-area="Employee" asp-controller="LibraryBook" asp-action="Index">
+                                <i class="bi bi-bookshelf"></i> Library
+                            </a>
+                        </li>
+
+                        @if (User.IsInRole("Teacher"))
+                        {
+                            <li class="list-group-item text-center mb-3">
+                                <a type="button" class="btn btn-outline-light btn-block w-100" asp-area="Teacher" asp-controller="Certificate" asp-action="Index">
+                                    <i class="bi bi-award"></i> Certificates
+                                </a>
+                            </li>
+                        }
+
+                        @if (User.IsInRole("Teacher") || User.IsInRole("Admin"))
+                        {
+                            <li class="list-group-item text-center mb-3">
+                                <a type="button" class="btn btn-outline-light btn-block w-100" asp-area="Teacher" asp-controller="StudentAttendance" asp-action="Index">
+                                    <i class="bi bi-calendar-check"></i> Attendances
+                                </a>
+                            </li>
+                        }
+
+                        @if (User.IsInRole("Teacher") || User.IsInRole("Student"))
+                        {
+                            <li class="list-group-item text-center mb-3">
+                                <a type="button" class="btn btn-outline-light btn-block w-100" asp-area="Teacher" asp-controller="Topic" asp-action="Index">
+                                    <i class="bi bi-journal"></i> Schedules
+                                </a>
+                            </li>
+                            <li class="list-group-item text-center mb-3">
+                                <a type="button" class="btn btn-outline-light btn-block w-100" asp-area="Teacher" asp-controller="Exam" asp-action="Index">
+                                    <i class="bi bi-file-earmark-check"></i> Exams
+                                </a>
+                            </li>
+                            <li class="list-group-item text-center mb-3">
+                                <a type="button" class="btn btn-outline-light btn-block w-100" asp-area="Teacher" asp-controller="Homework" asp-action="Index">
+                                    <i class="bi bi-journal-text"></i> Homeworks
+                                </a>
+                            </li>
+                        }
+                    </ul>
+
+                </div>
+            </div>
+
+            <div class="col-md-9">
+                <div class="card">
+                    <h3 class="card-header text-center text-white">Welcome,  @UserManager.GetUserName(User)</h3>
+                    <div class="card-body">
+
+                        @if (User.IsInRole("Admin"))
+                        {
+                            <h5 class="text-warning"> Your role is: (Admin) </h5>
+                        }
+                        @if (User.IsInRole("Employee"))
+                        {
+                            <h5 class="text-warning"> Your role is: (Employee) </h5>
+                        }
+                        @if (User.IsInRole("Teacher"))
+                        {
+                            <h5 class="text-warning"> Your role is: (Teacher) </h5>
+                        }
+                        @if (User.IsInRole("Student"))
+                        {
+                            <h5 class="text-warning"> Your role is: (Student) </h5>
+                        }
+
+                        <h5 class="card-title text-dark">Here we can add any content we want, like this GIF image: </h5>
+                        <div class="row justify-content-center mt-5">
+                            <div class="col-md-6">
+                                <img src="~/giphy.gif" class="img-fluid" alt="GIF Image">
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+} 
+

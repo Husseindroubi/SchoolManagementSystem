@@ -1,0 +1,85 @@
+﻿@page
+@using WebApplication1.Areas.Identity.Pages.Account
+@model LoginModel
+@{
+    ViewData["Title"] = "Log in";
+}
+
+
+<h1 class="text-center">@ViewData["Title"]</h1>
+
+<br />
+<br />
+@if (TempData["AlertMessage"] != null)
+{
+    <div id="alertMessage" class="alert alert-success" role="alert">
+        @TempData["AlertMessage"]
+    </div>
+}
+
+<div class="card shadow border border-primary mt-4">
+    <div class="card-header bg-secondary bg-gradient m-lg-0 py-4">
+        <div class="row justify-content-center">
+            <div class="col-8 text-center">
+                <h2 class="py-2 text-white">Log in to School Genie</h2>
+            </div>
+        </div>
+    </div>
+
+    <div class="card-body p-4">
+        <div class="row pt-3 justify-content-center">
+            <div class="col-8 text-center">
+                <form id="account" method="post" asp-area="Identity" asp-controller="Account" asp-action="Login">
+                    <h2>Use your account to log in.</h2>
+                    <hr />
+                    <div asp-validation-summary="ModelOnly" class="text-danger" role="alert"></div>
+                    <div class="form-floating mb-3">
+                        <input asp-for="Input.Email" class="form-control" autocomplete="email" aria-required="true" placeholder="Email" />
+                        <label asp-for="Input.Email" class="form-label text-light">Email</label>
+                        <span asp-validation-for="Input.Email" class="text-danger"></span>
+                    </div>
+                    <div class="form-floating mb-3">
+                        <input asp-for="Input.Password" class="form-control" autocomplete="current-password" aria-required="true" placeholder="password" />
+                        <label asp-for="Input.Password" class="form-label text-light">Password</label>
+                        <span asp-validation-for="Input.Password" class="text-danger"></span>
+                    </div>
+                    <div class="checkbox mb-3">
+                        <label asp-for="Input.RememberMe" class="form-label text-light">
+                            <input class="form-check-input" asp-for="Input.RememberMe" />
+                            @Html.DisplayNameFor(m => m.Input.RememberMe)
+                        </label>
+                    </div>
+                    <div>
+                        <button id="login-submit" type="submit" class="w-100 btn btn-lg btn-info">Log in</button>
+                    </div>
+                </form>
+
+                <div>
+                    <p>
+                        <a id="forgot-password" asp-page="./ForgotPassword">Forgot your password?</a>
+                    </p>
+                    <p>
+                        <a asp-page="./Register" asp-route-returnUrl="@Model.ReturnUrl">Register as a new user</a>
+                    </p>
+                    <p>
+                        <a id="resend-confirmation" asp-page="./ResendEmailConfirmation">Resend email confirmation</a>
+                    </p>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+@section Scripts {
+    <partial name="_ValidationScriptsPartial" />
+    <script>
+        setTimeout(function () {
+            var alertMessage = document.getElementById('alertMessage');
+            if (alertMessage) {
+                alertMessage.style.display = 'none';
+            }
+        }, 3000);
+    </script>
+}
+
+

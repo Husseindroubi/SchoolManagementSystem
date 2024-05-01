@@ -1,0 +1,78 @@
+﻿
+@model List<OnlineCourse>
+
+
+<br />
+<br />
+<br />
+<br />
+<br />
+<h1 class="text-white">Online Courses</h1>
+@if (TempData["SuccessMessage"] != null)
+{
+    <div id="alertMessage" class="alert alert-success alert-dismissible fade show" role="alert">
+        @TempData["SuccessMessage"]
+        <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+    </div>
+}
+
+@if(User.IsInRole("Teacher"))
+{
+    <a asp-controller="OnlineCourse" asp-action="Create" class="btn btn-success mx-2">
+        <i class="bi bi-plus-circle-dotted"></i> Add Course
+    </a>
+}
+
+<a asp-area="Student" asp-controller="Dashboard" asp-action="DashPage" class="btn btn-dark mx-2">
+    <i class="bi bi-arrow-return-left"></i> to Dashboard
+</a>
+
+<br />
+<br />
+
+<table class="table table-hover">
+    <thead>
+        <tr>
+            <th scope="col">Course Name</th>
+            <th scope="col">Description</th>
+            <th scope="col">Instructor</th>
+            <th scope="col">From</th>
+            <th scope="col">To</th>
+            <th scope="col">Limit</th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var OnlineCourse in Model.OrderByDescending(u => u.StartDate))
+        {
+            <tr class="table-info">
+                <td>@OnlineCourse.CourseName</td>
+                <td>@OnlineCourse.Description</td>
+                <td>@OnlineCourse.InstructorName</td>
+                <td>@OnlineCourse.StartDate</td>
+                <td>@OnlineCourse.EndDate</td>
+                <td>@OnlineCourse.EnrollmentLimit</td>
+
+                @if (User.IsInRole("Teacher"))
+                {
+                    <td>
+                        <div class="w-75 btn-group" role="group">
+                            <a asp-controller="OnlineCourse" asp-action="Edit" asp-route-OnlineCourseId="@OnlineCourse.OnlineCourseId" class="btn btn-light mx-2">
+                                <i class="bi bi-pencil-square"> Edit</i>
+                            </a>
+                            <a asp-controller="OnlineCourse" asp-action="Delete" asp-route-OnlineCourseId="@OnlineCourse.OnlineCourseId" class="btn btn-primary mx-2">
+                                <i class="bi bi-trash3-fill"> Delete</i>
+                            </a>
+                        </div>
+                    </td>
+                }
+
+            </tr>
+        }
+    </tbody>
+</table>
+
+<script>
+    setTimeout(function () {
+        $('#alertMessage').alert('close');
+    }, 2500); 
+</script>

@@ -1,0 +1,48 @@
+﻿@model Topic
+
+
+<br />
+<br />
+<br />
+<br />
+<br />
+
+@if (User.IsInRole("Teacher"))
+{
+    <h1 class="text-white">Create Topic</h1>
+
+    <form asp-controller="Topic" asp-action="Create" method="post">
+        <div class="form-group">
+            <label class="text-white">DayOfWeek:</label>
+            <input asp-for="DayOfWeek" class="form-control text-white" />
+            <span asp-validation-for="DayOfWeek" class="text-danger"></span>
+        </div>
+        <div class="form-group">
+            <label class="text-white">StartTime:</label>
+            <input asp-for="StartTime" class="form-control text-white"></input>
+            <span asp-validation-for="StartTime" class="text-danger"></span>
+        </div>
+        <div class="form-group">
+            <label class="text-white">EndTime:</label>
+            <input asp-for="EndTime" class="form-control text-white" />
+            <span asp-validation-for="EndTime" class="text-danger"></span>
+        </div>
+        <div class="form-group">
+            <label class="text-white">Teacher:</label>
+            <input asp-for="TeacherName" class="form-control text-white"></input>
+            <span asp-validation-for="TeacherName" class="text-danger"></span>
+        </div>
+        <div class="form-group">
+            <label class="text-white">Subject:</label>
+            <input asp-for="Subject" class="form-control text-white" />
+            <span asp-validation-for="Subject" class="text-danger"></span>
+        </div>
+        <button type="submit" class="btn btn-primary">Create</button>
+        <a asp-action="Index" class="btn btn-secondary">Back to List</a>
+    </form>
+} else
+{
+    <a asp-action="Index" class="btn btn-secondary">Back to List</a>
+}
+
+    

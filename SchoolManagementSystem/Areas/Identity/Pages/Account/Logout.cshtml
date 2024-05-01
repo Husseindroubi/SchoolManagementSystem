@@ -1,0 +1,33 @@
+﻿@page
+@using WebApplication1.Areas.Identity.Pages.Account
+@model LogoutModel
+@{
+    ViewData["Title"] = "Log out";
+}
+
+<br />
+<br />
+<br />
+<br />
+<br />
+<br />
+
+    <h1 class="text-white">@ViewData["Title"]</h1>
+    @{
+        if (User.Identity?.IsAuthenticated ?? false)
+        {
+            <form class="form-inline" asp-area="Identity" asp-page="/Account/Logout" asp-route-returnUrl="@Url.Page("/", new { area = "" })" method="post">
+                <button type="submit" class="nav-link btn btn-link text-white">Click here to Logout</button>
+            </form>
+        }
+        else
+        {
+            <h2 class="text-white">You have successfully logged out of the application.</h2>
+        }
+    }
+
+<script>
+    setTimeout(function () {
+        window.location.href = '/Student/Home/Index';
+    }, 2000);
+</script>

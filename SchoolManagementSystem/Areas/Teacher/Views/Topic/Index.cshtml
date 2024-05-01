@@ -1,0 +1,92 @@
+﻿@model List<Topic>
+
+
+<br />
+<br />
+<br />
+<br />
+<br />
+@if (TempData["SuccessMessage"] != null)
+{
+    <div id="alertMessage" class="alert alert-success alert-dismissible fade show" role="alert">
+        @TempData["SuccessMessage"]
+        <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+    </div>
+}
+
+
+    <h1 class="text-dark">Weekly Schedule</h1>
+    <br />
+@if (User.IsInRole("Teacher"))
+{
+    <a asp-controller="Topic" asp-action="Create" class="btn btn-success mx-2">
+        <i class="bi bi-plus-circle-dotted"></i> Add Topic
+    </a>
+}
+<a asp-area="Student" asp-controller="Dashboard" asp-action="DashPage" class="btn btn-secondary mx-2">
+    <i class="bi bi-arrow-return-left"></i> to Dashboard
+</a>
+
+<br />
+<br />
+
+<table class="table table-danger">
+    <thead>
+        <tr>
+            <th scope="col">Day Of Week</th>
+            <th scope="col">Start at</th>
+            <th scope="col">End at</th>
+            <th scope="col">Teacher</th>
+            <th scope="col">Subject</th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var Topic in Model.OrderBy(u => u.StartTime))
+        {
+            <tr class="table-info">
+                <td>@Topic.DayOfWeek</td>
+                <td>@Topic.StartTime</td>
+                <td>@Topic.EndTime</td>
+                <td>@Topic.TeacherName</td>
+                <td>@Topic.Subject</td>
+                @if (User.IsInRole("Teacher"))
+                {
+                    <td>
+                        <div class="w-75 btn-group" role="group">
+                            <a asp-controller="Topic" asp-action="Edit" asp-route-TopicId="@Topic.TopicId" class="btn btn-light mx-2">
+                                <i class="bi bi-pencil-square"> Edit</i>
+                            </a>
+                            <a asp-controller="Topic" asp-action="Delete" asp-route-TopicId="@Topic.TopicId" class="btn btn-primary mx-2">
+                                <i class="bi bi-trash3-fill"> Delete</i>
+                            </a>
+                        </div>
+                    </td>
+                }
+            </tr>
+        }
+    </tbody>
+</table>
+}
+
+<div>
+    <ul class="pagination">
+        <li class="page-item @(ViewBag.PageIndex == 1 ? "disabled" : "")">
+            <a class="page-link" asp-action="Index" asp-route-pageIndex="@(ViewBag.PageIndex - 1)">Previous</a>
+        </li>
+        @for (int i = 1; i <= ViewBag.TotalPages; i++)
+        {
+            <li class="page-item @(ViewBag.PageIndex == i ? "active" : "")">
+                <a class="page-link" asp-action="Index" asp-route-pageIndex="@i">@i</a>
+            </li>
+        }
+        <li class="page-item @(ViewBag.PageIndex == ViewBag.TotalPages ? "disabled" : "")">
+            <a class="page-link" asp-action="Index" asp-route-pageIndex="@(ViewBag.PageIndex + 1)">Next</a>
+        </li>
+    </ul>
+</div>
+
+<script>
+    setTimeout(function () {
+        $('#alertMessage').alert('close');
+    }, 2000); 
+</script>

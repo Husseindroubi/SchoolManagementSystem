@@ -1,0 +1,71 @@
+﻿@model LibraryBook
+
+
+<br />
+<br />
+<br />
+<br />
+<br />
+
+@if (User.IsInRole("Employee"))
+{
+    <h1 class="text-white">Add new Book</h1>
+
+    <form asp-controller="LibraryBook" asp-action="Create" method="post" enctype="multipart/form-data">
+        <div class="form-group">
+            <label class="text-white">Title:</label>
+            <input asp-for="Title" class="form-control" />
+            <span asp-validation-for="Title" class="text-danger"></span>
+        </div>
+        <div class="form-group">
+            <label class="text-white">Author:</label>
+            <input id="author" name="Author" class="form-control" />
+            <span asp-validation-for="Author" class="text-danger"></span>
+        </div>
+        <div class="form-group">
+            <label class="text-white">ISBN:</label>
+            <input id="isbn" name="ISBN" class="form-control" />
+            <span asp-validation-for="ISBN" class="text-danger"></span>
+        </div>
+        <div class="form-group">
+            <label class="text-white">Description:</label>
+            <textarea id="Description" name="Description" class="form-control"></textarea>
+        </div>
+        <div class="form-group">
+            <label class="text-white">Is Available:</label>
+            <input id="availability" name="IsAvailable" class="form-control" />
+            <span asp-validation-for="IsAvailable" class="text-danger"></span>
+        </div>
+        <div class="form-group">
+            <label class="text-white">Image:</label>
+            <input type="file" name="image" class="form-control-file" />
+        </div>
+        <button type="submit" class="btn btn-primary">Create</button>
+        <a asp-action="Index" class="btn btn-secondary">Back to List</a>
+    </form>
+
+} else
+{
+    <a asp-action="Index" class="btn btn-secondary">Back to List</a>
+}
+
+
+@section Scripts {
+    <script>
+        tinymce.init({
+            selector: 'textarea',
+            plugins: 'anchor autolink charmap codesample emoticons image link lists media searchreplace table visualblocks wordcount checklist mediaembed casechange export formatpainter pageembed linkchecker a11ychecker tinymcespellchecker permanentpen powerpaste advtable advcode editimage advtemplate ai mentions tinycomments tableofcontents footnotes mergetags autocorrect typography inlinecss markdown',
+            toolbar: 'undo redo | blocks fontfamily fontsize | bold italic underline strikethrough | link image media table mergetags | addcomment showcomments | spellcheckdialog a11ycheck typography | align lineheight | checklist numlist bullist indent outdent | emoticons charmap | removeformat',
+            tinycomments_mode: 'embedded',
+            tinycomments_author: 'Author name',
+            mergetags_list: [
+                { value: 'First.Name', title: 'First Name' },
+                { value: 'Email', title: 'Email' },
+            ],
+            ai_request: (request, respondWith) => respondWith.string(() => Promise.reject("See docs to implement AI Assistant")),
+        });
+    </script>
+    @{
+        <partial name="_ValidationScriptsPartial" />
+    }
+}

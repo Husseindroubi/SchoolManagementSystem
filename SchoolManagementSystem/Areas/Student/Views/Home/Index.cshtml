@@ -1,0 +1,351 @@
+﻿@using Microsoft.AspNetCore.Identity
+
+@inject SignInManager<IdentityUser> SignInManager
+@inject UserManager<IdentityUser> UserManager
+
+@{
+    ViewData["Title"] = "Home Page";
+}
+
+<div class="container">
+    @if (TempData["SuccessMessage"] != null)
+    {
+        <div class="alert alert-success" role="alert">
+            @TempData["SuccessMessage"]
+        </div>
+    }
+</div>
+<br />
+<br />
+<br />
+<br />
+<br />
+<br />
+
+@if (User.Identity.IsAuthenticated)
+{
+    <div class="text-start">
+        <a asp-area="Student" asp-controller="Dashboard" asp-action="DashPage" method="post" class="btn btn-info text-white">Dashboard</a>
+    </div>
+}
+
+<div class="text-light">
+    <div class="text-center">
+        <h1> Explore the World's No.1 School Management System</h1>
+        <h1>Here you can fulfill all your goals</h4>
+    </div>
+</div>
+<br />
+<div id="carouselExampleInterval" class="carousel slide" data-bs-ride="carousel">
+    <div class="carousel-inner">
+        <div class="carousel-item active" data-bs-interval="3000">
+            <img src="~/carousel1.jpg" class="d-block w-100" alt="carousal1">
+        </div>
+        <div class="carousel-item" data-bs-interval="3000">
+            <img src="~/carousel2.jpg" class="d-block w-100" alt="carousal2">
+        </div>
+        <div class="carousel-item" data-bs-interval="3000">
+            <img src="~/carousel3.jpg" class="d-block w-100" alt="carousal3">
+        </div>
+        <div class="carousel-item" data-bs-interval="3000">
+            <img src="~/carousel4.jpg" class="d-block w-100" alt="carousal4">
+        </div>
+        <div class="carousel-item" data-bs-interval="3000">
+            <img src="~/carousel5.jpg" class="d-block w-100" alt="carousal5">
+        </div>
+        <div class="carousel-item" data-bs-interval="3000">
+            <img src="~/carousel6.jpg" class="d-block w-100" alt="carousal6">
+        </div>
+    </div>
+    <button class="carousel-control-prev" type="button" data-bs-target="#carouselExampleInterval" data-bs-slide="prev">
+        <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+        <span class="visually-hidden">Previous</span>
+    </button>
+    <button class="carousel-control-next" type="button" data-bs-target="#carouselExampleInterval" data-bs-slide="next">
+        <span class="carousel-control-next-icon" aria-hidden="true"></span>
+        <span class="visually-hidden">Next</span>
+    </button>
+</div>
+<br />
+
+<div class="site-section">
+    <div class="container">
+        <div class="row mb-5 justify-content-center text-center">
+            <div class="text-light">
+                <h2 class="display-6">
+                    <span>Why School Genie?</span>
+                </h2>
+            </div>
+        </div>
+
+        <div class="row">
+            <div class="col-lg-4 col-md-6 mb-4 mb-lg-0">
+                <div class="feature-1 border">
+                    <div class="icon-wrapper bg-success">
+                        <div class="text-light"><h1 class="text-center"><i class="bi bi-cash-coin"></i></h1></div>
+                    </div>
+                    <div class="feature-1-content">
+                        <h3 class="text-light">School Genie is Absolutely Free</h3>
+                        <p class="text-light">School Genie is an absolutely 100% free school management software for a lifetime with no limitations. You need just to Sign Up</p>
+                    </div>
+                </div>
+            </div>
+            <div class="col-lg-4 col-md-6 mb-4 mb-lg-0">
+                <div class="feature-1 border">
+                    <div class="icon-wrapper bg-success">
+                        <div class="text-light"><h1 class="text-center"><i class="bi bi-file-earmark"></i></h1></div>
+                    </div>
+                    <div class="feature-1-content">
+                        <h3 class="text-light">Responsive Web Design</h3>
+                        <p class="text-light">You can use our free school management software on any device, like Mobile, Tablet, Laptop, or desktop due to its responsive design. </p>
+                    </div>
+                </div>
+            </div>
+            <div class="col-lg-4 col-md-6 mb-4 mb-lg-0">
+                <div class="feature-1 border">
+                    <div class="icon-wrapper bg-success">
+                        <div class="text-light"><h1 class="text-center"><i class="bi bi-cloud-check"></i></h1></div>
+                    </div>
+                    <div class="feature-1-content">
+                        <h3 class="text-light">Cloud Based Software</h3>
+                        <p class="text-light">School Genie is free school software that is always online, you can access it from anywhere, anytime. We will take care of your data and backups.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <br />
+        <br />
+        <br />
+
+        <div class="row">
+            <div class="col-lg-4 col-md-6 mb-4 mb-lg-0">
+                <div class="feature-1 border">
+                    <div class="icon-wrapper bg-success">
+                        <div class="text-light"><h1 class="text-center"><i class="bi bi-graph-up-arrow"></i></h1></div>
+                    </div>
+                    <div class="feature-1-content">
+                        <h3 class="text-light">Infographics & Animations</h3>
+                        <p class="text-light">We use infographics and animations to explain student's reports and results. Our free school software facilitates you with the optimized result.</p>
+                    </div>
+                </div>
+            </div>
+            <div class="col-lg-4 col-md-6 mb-4 mb-lg-0">
+                <div class="feature-1 border">
+                    <div class="icon-wrapper bg-success">
+                        <div class="text-light"><h1 class="text-center"><i class="bi bi-person-arms-up"></i></h1></div>
+                    </div>
+                    <div class="feature-1-content">
+                        <h3 class="text-light">Regular Updates & Support</h3>
+                        <p class="text-light">We add new features regularly to make school administrative software unmatchable. Free online 24/7 support for users. </p>
+                    </div>
+                </div>
+            </div>
+            <div class="col-lg-4 col-md-6 mb-4 mb-lg-0">
+                <div class="feature-1 border">
+                    <div class="icon-wrapper bg-success">
+                        <div class="text-light"><h1 class="text-center"><i class="bi bi-fingerprint"></i></h1></div>
+                    </div>
+                    <div class="feature-1-content">
+                        <h3 class="text-light">Fast, Secure & Easy Platform</h3>
+                        <p class="text-light">School Genie use advanced tools and technologies to build up this school software. It is super fast, reliable, and easy to use.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+    </div>
+</div>
+<br />
+
+
+<div class="text-light">
+    <div class="text-center">
+        <h1 class="display-6">Features Of School Genie</h1>
+        <p class="fs-3">
+            <kbd>School Genie</kbd> is a complete and feature-rich school management software for Schools:
+        </p> <br />
+    </div>
+</div>
+<br />
+
+<div class="container">
+    <div class="row">
+        <div class="col-md-6">
+            <article class="text-light">
+                <h3>Manage User Roles</h3>
+                <p>our school management system comes with a separate portal for every user role. An admin portal with full controls, separate portals for Management staff, Accountant, Teachers, Parents, and Students.</p>
+            </article>
+        </div>
+        <div class="col-md-4">
+            <div class="bounce-image">
+                <img src="~/full-team.png" class="img-fluid" alt="team">
+            </div>
+        </div>
+    </div>
+</div>
+<br />
+<br />
+
+<div class="container">
+    <div class="row">
+        <div class="col-md-4">
+            <div class="swap-image">
+                <img src="~/communicate.png" class="img-fluid" alt="team">
+            </div>
+        </div>
+        <div class="col-md-6">
+            <article class="text-light">
+                <h3>Messaging and file sharing system</h3>
+                <p>Discuss and share ideas with other users through our messaging system. With this feature, you can do real-time chat with every individual associated with your institution.</p>
+            </article>
+        </div>
+    </div>
+</div>
+<br />
+<br />
+
+<div class="container">
+    <div class="row">
+        <div class="col-md-6">
+            <article class="text-light">
+                <h3>Free online live classes</h3>
+                <p>Stop using third-party apps like Zoom, Google meet, or Microsoft team to conduct online classes. Use our most powerful and easy-to-use platform to conduct your live online classes. It's 100% free.</p>
+            </article>
+        </div>
+        <div class="col-md-4">
+            <div class="reverse-bounce-image">
+                <img src="~/online-class.png" class="img-fluid" alt="team">
+            </div>
+        </div>
+    </div>
+</div>
+<br />
+<br />
+<br />
+
+<div class="container">
+    <div class="row">
+        <div class="col-md-4">
+            <div class="reswap-image">
+                <img src="~/language.png" class="img-fluid" alt="team">
+            </div>
+        </div>
+        <div class="col-md-6">
+            <article class="text-light">
+                <h3>Available In all Languages</h3>
+                <p>Our free school management software comes in all languages. Manage your educational institute with your native language.</p>
+            </article>
+        </div>
+    </div>
+</div>
+<br />
+
+<div class="site-section">
+    <div class="container">
+        <div class="row mb-5 justify-content-center text-center">
+            <div class="text-light">
+                <h2 class="display-6">
+                    <span class="text-start">Additional Features: </span>
+                </h2>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-lg-2 col-md-6 mb-4 mb-lg-0 text-center">
+                <div class="d-flex flex-column align-items-center">
+                    <h1 class="text-light mb-3"><i class="bi bi-people mr-2"></i></h1>
+                    <h3 class="text-light">Class Management</h3>
+                </div>
+            </div>
+            <div class="col-lg-2 col-md-6 mb-4 mb-lg-0 text-center">
+                <div class="d-flex flex-column align-items-center">
+                    <h1 class="text-light mb-3"><i class="bi bi-clipboard-check mr-2"></i></h1>
+                    <h3 class="text-light">Exams Management</h3>
+                </div>
+            </div>
+            <div class="col-lg-2 col-md-6 mb-4 mb-lg-0 text-center">
+                <div class="d-flex flex-column align-items-center">
+                    <h1 class="text-light mb-3"><i class="bi bi-list-check mr-2"></i></h1>
+                    <h3 class="text-light">Attendance Management</h3>
+                </div>
+            </div>
+            <div class="col-lg-2 col-md-6 mb-4 mb-lg-0 text-center">
+                <div class="d-flex flex-column align-items-center">
+                    <h1 class="text-light mb-3"><i class="bi bi-coin mr-2"></i></h1>
+                    <h3 class="text-light">Fees Management</h3>
+                </div>
+            </div>
+            <div class="col-lg-2 col-md-6 mb-4 mb-lg-0 text-center">
+                <div class="d-flex flex-column align-items-center">
+                    <h1 class="text-light mb-3"><i class="bi bi-journal-check mr-2"></i></h1>
+                    <h3 class="text-light">Homeworks Management</h3>
+                </div>
+            </div>
+            <div class="col-lg-2 col-md-6 mb-4 mb-lg-0 text-center">
+                <div class="d-flex flex-column align-items-center">
+                    <h1 class="text-light mb-3"><i class="bi bi-person-gear"></i></h1>
+                    <h3 class="text-light">Accounts Management</h3>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<br />
+<br />
+<div class="row">
+    <div class="col-md-4">
+        <div class="bounce-image">
+            <img src="~/studentreport-min.png" class="img-fluid" alt="team">
+        </div>
+    </div>
+    <div class="col-md-2">
+        <div class="reverse-bounce-image">
+            <img src="~/play1.png" class="img-fluid" alt="team">
+        </div>
+    </div>
+    <div class="col-md-6">
+        <div class="bounce-image">
+            <img src="~/laptop.png" class="img-fluid" alt="team">
+        </div>
+    </div>
+</div>
+</div>
+<br />
+
+<div class="text-light">
+    <div class="text-center">
+        <h4 class="display-6">Here you can leave a message, ask a question or just say hello!!</h4>
+    </div>
+</div>
+
+<br />
+<br />
+
+@model ModelsLayer.ContactMessage
+
+<form asp-controller="Contact" asp-action="AddContact" method="post" >
+    <div class="container">
+        <div class="row justify-content-center">
+            <div class="col-md-6">
+                <div class="mb-3 text-light">
+                    <label for="exampleInputName" class="form-label">Name</label>
+                    <input type="text" class="form-control" id="exampleInputName" name="Name" placeholder="Enter your name">
+                    <div id="emailHelp" class="form-text">Please write your name here</div>
+                </div>
+                <div class="mb-3 text-light">
+                    <label for="exampleInputEmail1" class="form-label">Email address</label>
+                    <input type="email" class="form-control" id="exampleInputEmail1" name="Email" aria-describedby="emailHelp" placeholder="Enter email">
+                    <div id="emailHelp" class="form-text">We'll never share your email with anyone else.</div>
+                </div>
+                <div class="mb-3 text-light">
+                    <label for="exampleFormControlTextarea1" class="form-label">Message</label>
+                    <textarea class="form-control" id="exampleFormControlTextarea1" name="Message" rows="3" placeholder="Enter your message"></textarea>
+                </div>
+                <button type="submit" class="btn btn-primary">Submit</button>
+            </div>
+        </div>
+    </div>
+</form>
+
+<br />
+<br />

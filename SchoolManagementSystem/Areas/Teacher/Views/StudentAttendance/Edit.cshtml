@@ -1,0 +1,40 @@
+﻿@model StudentAttendance
+
+<br />
+<br />
+<br />
+<br />
+<br />
+
+@if(User.IsInRole("Teacher"))
+{
+    <h1 class="text-white">Edit Attendance</h1>
+    <form asp-controller="StudentAttendance" asp-action="Edit" method="post">
+        <input type="hidden" asp-for="StudentAttendanceId" />
+        <div class="form-group">
+            <label class="text-white">Student Name:</label>
+            <input asp-for="StudentName" class="form-control" />
+            <span asp-validation-for="StudentName" class="text-danger"></span>
+        </div>
+        <div class="form-group">
+            <label class="text-white">Class Name:</label>
+            <input asp-for="ClassName" class="form-control"></input>
+            <span asp-validation-for="ClassName" class="text-danger"></span>
+        </div>
+        <div class="form-group">
+            <label class="text-white">Is Present:</label>
+            <div class="form-check">
+                <input asp-for="IsPresent" class="form-check-input" type="checkbox">
+                <label class="form-check-label text-white" for="IsPresent">IsPresent</label>
+            </div>
+            <span asp-validation-for="IsPresent" class="text-danger"></span>
+        </div>
+        <button type="submit" class="btn btn-primary">Update</button>
+        <a asp-action="Index" class="btn btn-secondary">Back to List</a>
+    </form>
+}
+else
+{
+    <a asp-action="Index" class="btn btn-secondary">Back to List</a>
+}
+

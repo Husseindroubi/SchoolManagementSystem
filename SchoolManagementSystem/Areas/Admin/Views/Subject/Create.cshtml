@@ -1,0 +1,33 @@
+﻿@model ModelsLayer.Subject
+
+
+<br />
+<br />
+<br />
+<br />
+<br />
+
+@if (User.IsInRole("Admin"))
+{
+    <h1 class="text-white">Create an Subject</h1>
+
+    <form asp-controller="Subject" asp-action="Create" method="post">
+        <div class="form-group">
+            <label class="text-white">Name:</label>
+            <input asp-for="Name" class="form-control" />
+            <span asp-validation-for="Name" class="text-danger"></span>
+        </div>
+        <div class="form-group">
+            <label class="text-white">Description:</label>
+            <textarea asp-for="Description" class="form-control"></textarea>
+            <span asp-validation-for="Description" class="text-danger"></span>
+        </div>
+        <button type="submit" class="btn btn-primary">Create</button>
+        <a asp-action="Index" class="btn btn-secondary">Back to List</a>
+    </form>
+} else
+{
+    <a asp-action="Index" class="btn btn-secondary">Back to List</a>
+}
+
+    

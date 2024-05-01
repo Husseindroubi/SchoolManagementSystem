@@ -1,0 +1,33 @@
+﻿@model Announcement
+
+
+<br />
+<br />
+<br />
+<br />
+<br />
+
+@if (User.IsInRole("Admin"))
+{
+    <h1 class="text-white">Create an Announcement</h1>
+
+    <form asp-controller="Announcement" asp-action="Create" method="post">
+        <div class="form-group">
+            <label class="text-white">Title:</label>
+            <input asp-for="Title" class="form-control" />
+            <span asp-validation-for="Title" class="text-danger"></span>
+        </div>
+        <div class="form-group">
+            <label class="text-white">Content:</label>
+            <textarea asp-for="Content" class="form-control"></textarea>
+            <span asp-validation-for="Content" class="text-danger"></span>
+        </div>
+        <button type="submit" class="btn btn-primary">Create</button>
+        <a asp-action="Index" class="btn btn-secondary">Back to List</a>
+    </form>
+} else
+{
+    <a asp-action="Index" class="btn btn-secondary">Back to List</a>
+}
+
+    
